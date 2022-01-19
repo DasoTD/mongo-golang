@@ -80,3 +80,71 @@ func (uc userController) Updateuser(w http.ResponseWriter, r *http.Request, p ht
 		return
 	}
 }
+
+// id := p.ByName("id")
+// 	if !bson.IsObjectIdHex(id) {
+// 		w.WriteHeader(http.StatusNotFound)
+// 	}
+// 	u := models.User{}
+// 	json.NewDecoder(r.Body).Decode(&u)
+// 	oid := bson.ObjectIdHex(id)
+
+// 	c := uc.session.DB("mongo-golang").C("users")
+// 	colQuerier := bson.M{"_id": oid}
+// 	update := bson.M{"title": u.Name, "body": u.Gender, "author": u.Age}
+// 	if err := c.Update(colQuerier, update); err != nil {
+// 		w.WriteHeader(404)
+// 		return
+// 	}
+
+// if err := uc.session.DB("mongo-golang").C("users").FindId(oid).One(&u); err != nil {
+// 	w.WriteHeader(404)
+// 	return
+// }
+// update := bson.M{"title": u.Name, "body": u.Gender, "author": u.Age}
+// c := uc.session.DB("mongo-golang").C("users")
+// err := c.UpdateId(id, update)
+// if err != nil {
+// 	panic(err)
+// }
+//}
+
+// func(m * MoviesDAO) Update(movie Movie) error {
+//     err: = db.C(COLLECTION).UpdateId(movie.ID, & movie)
+//     return err
+// }
+
+// func UpdateMovieEndPoint(w http.ResponseWriter, r * http.Request) {
+//     defer r.Body.Close()
+//     var movie Movie
+//     if err: = json.NewDecoder(r.Body).Decode( & movie);
+//     err != nil {
+//         respondWithError(w, http.StatusBadRequest, "Invalid request payload")
+//         return
+//     }
+//     if err: = dao.Update(movie);
+//     err != nil {
+//         respondWithError(w, http.StatusInternalServerError, err.Error())
+//         return
+//     }
+//     respondWithJson(w, http.StatusOK, map[string] string {
+//         "result": "success"
+//     })
+// }
+
+// c := session.DB("test").C("people")
+// colQuerier := bson.M{"name": "Ale"}
+// 	change := bson.M{"$set": bson.M{"phone": "+86 99 8888 7777", "timestamp": time.Now()}}
+// 	err = c.Update(colQuerier, change)
+// 	if err != nil {
+// 		panic(err)
+// 	}
+// update := bson.M{"title": post.Title, "body": post.Body, "author": post.Author}
+
+// c := uc.session.DB("mongo-golang").C("users")
+// 	update := bson.M{"name": u.Name, "gender": u.Gender, "age": u.Age}
+// 	err := c.UpdateId(bson.M{"id": oid}, bson.M{"$set": update})
+// 	if err != nil {
+// 		w.WriteHeader(404)
+// 		return
+// 	}
