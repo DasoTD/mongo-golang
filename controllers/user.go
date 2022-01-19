@@ -65,3 +65,18 @@ func (uc userController) DeleteUser(w http.ResponseWriter, r *http.Request, p ht
 	w.WriteHeader(http.StatusOK)
 	fmt.Fprint(w, "Deleted user", oid, "\n")
 }
+
+func (uc userController) Updateuser(w http.ResponseWriter, r *http.Request, p httprouter.Params) {
+	id := p.ByName("id")
+	if !bson.IsObjectIdHex(id) {
+		w.WriteHeader(http.StatusNotFound)
+	}
+	oid := bson.ObjectIdHex(id)
+	u := models.User{}
+	json.NewDecoder(r.Body).Decode(&u)
+
+	if err := uc.session.DB("mongo-golang").C("users").FindId(oid).One(&u); err != nil {
+		w.WriteHeader(404)
+		return
+	}
+}
